@@ -9,7 +9,7 @@ public class DbConnector {
     private static final String db_hostname 	= "210.99.239.58";
     private static final int db_portnumber 		= 3306;
     private static final String db_database 	= "testdb";
-    private static final String db_charset 		= "utf8mb4";
+    private static final String db_charset 		= "utf8";
     private static final String db_username 	= "besuuser";
     private static final String db_password 	= "!Q2w3e4r";
 
