@@ -14,11 +14,89 @@ import DataVo.RequestHistoryVo;
 import DataVo.UserInfoVo;
 
 public class DatabaseManager {
-	public UserInfoVo user;
-	public NftInfoVo nft;
-	public NftCategoryVo category;
-	public FunctionInfoVo function;
-	public RequestHistoryVo history;
+	
+	// find NFT by userID
+	public List<NftInfoVo> getNftListByUserId(String userID) {
+		List<NftInfoVo> nftList = new ArrayList<>();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetNftListByUserIdSql(userID);
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            while(rs.next()) {
+	            	NftInfoVo nft = new NftInfoVo();
+	            	nft.setNftNumber(rs.getString("NFT_NUMBER"));
+	            	nft.setLabel(rs.getString("LABEL"));
+	            	nft.setCategory(rs.getString("CATEGORY"));
+	            	nft.setCreateDate(rs.getTimestamp("CREATE_DATE"));
+	            	nft.setPrice(rs.getInt("PRICE"));
+	            	nft.setUri(rs.getString("URI"));
+	            	nft.setIs_sell((char) rs.getByte("IS_SELL"));
+	            	nft.setCreateUser(rs.getString("CREATE_USER"));
+	            	nftList.add(nft);
+	            }
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+		
+		return nftList;
+	}
+	
+	// find user by userID
+	public UserInfoVo getUserByUserID(String userID) {
+		UserInfoVo user = new UserInfoVo();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetUserByUserIdSql(userID);
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            if(rs.next()) {
+	            	user.setUserId(rs.getString("USER_ID"));
+	            	user.setNickname(rs.getString("NICKNAME"));
+	            	user.setRegisterDate(rs.getTimestamp("REGISTER_DATE"));
+	            }
+	            
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+		return user;
+	}
 	
 	public List<UserInfoVo> getAllUser() {
 		List<UserInfoVo> userList = new ArrayList<>();
@@ -86,7 +164,6 @@ public class DatabaseManager {
 	            	nft.setUri(rs.getString("URI"));
 	            	nft.setIs_sell((char) rs.getByte("IS_SELL"));
 	            	nft.setCreateUser(rs.getString("CREATE_USER"));
-	            	nft.setOwnerUser(rs.getString("OWNER_USER"));
 	            	nftList.add(nft);
 	            }
 	    } catch (SQLException e) {
