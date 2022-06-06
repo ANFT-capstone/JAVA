@@ -10,6 +10,7 @@ import java.util.List;
 import DataVo.FunctionInfoVo;
 import DataVo.NftCategoryVo;
 import DataVo.NftInfoVo;
+import DataVo.RequestHistoryVo;
 import DataVo.UserInfoVo;
 
 public class DatabaseManager {
@@ -17,6 +18,7 @@ public class DatabaseManager {
 	public NftInfoVo nft;
 	public NftCategoryVo category;
 	public FunctionInfoVo function;
+	public RequestHistoryVo history;
 	
 	public List<UserInfoVo> getAllUser() {
 		List<UserInfoVo> userList = new ArrayList<>();
@@ -181,5 +183,47 @@ public class DatabaseManager {
 		DB.close();
 		
 		return functionList;
+	}
+	
+	public List<RequestHistoryVo> getAllHistory() {
+		List<RequestHistoryVo> historyList = new ArrayList<>();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetAllRequestHistorySql();
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            while(rs.next()) {
+	            	RequestHistoryVo history = new RequestHistoryVo();
+	            	history.setRequestId(rs.getInt("REQUEST_ID"));
+	            	history.setRequestUser(rs.getString("REQUEST_USER"));
+	            	history.setRequestFunction(rs.getInt("REQUEST_FUNCTION"));
+	            	history.setRequestDate(rs.getTimestamp("REQUEST_DATE"));
+	            	history.setParameters(rs.getString("PARAMETERS"));
+	            	history.setResult((char)rs.getByte("RESULT"));
+	            	historyList.add(history);
+	            }
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+		
+		return historyList;
 	}
 }

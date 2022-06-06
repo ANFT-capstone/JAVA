@@ -1,7 +1,5 @@
 package DataVo;
 
-import java.sql.Timestamp;
-
 public class FunctionInfoVo {
 	public String functionLabel;
 	public int functionID;
