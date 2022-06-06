@@ -14,6 +14,171 @@ import DataVo.RequestHistoryVo;
 import DataVo.UserInfoVo;
 
 public class DatabaseManager {
+	// find NFT by nft uri
+	public NftInfoVo getNftByNftId(String NftUri) {
+		NftInfoVo nft = new NftInfoVo();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetNftByNftUriSql(NftUri);
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            if(rs.next()) {
+	            	nft.setNftNumber(rs.getString("NFT_NUMBER"));
+	            	nft.setLabel(rs.getString("LABEL"));
+	            	nft.setCategory(rs.getString("CATEGORY"));
+	            	nft.setCreateDate(rs.getTimestamp("CREATE_DATE"));
+	            	nft.setPrice(rs.getInt("PRICE"));
+	            	nft.setUri(rs.getString("URI"));
+	            	nft.setIs_sell((char) rs.getByte("IS_SELL"));
+	            	nft.setCreateUser(rs.getString("CREATE_USER"));
+	            }
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+		
+		return nft;
+	}
+	
+	// find NFT by nft id
+	public NftInfoVo getNftByNftId(int NftId) {
+		NftInfoVo nft = new NftInfoVo();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetNftByNftIdSql(NftId);
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            if(rs.next()) {
+	            	nft.setNftNumber(rs.getString("NFT_NUMBER"));
+	            	nft.setLabel(rs.getString("LABEL"));
+	            	nft.setCategory(rs.getString("CATEGORY"));
+	            	nft.setCreateDate(rs.getTimestamp("CREATE_DATE"));
+	            	nft.setPrice(rs.getInt("PRICE"));
+	            	nft.setUri(rs.getString("URI"));
+	            	nft.setIs_sell((char) rs.getByte("IS_SELL"));
+	            	nft.setCreateUser(rs.getString("CREATE_USER"));
+	            }
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+		
+		return nft;
+	}
+	
+	// find owner by nft id
+	public List<UserInfoVo> getOwnerListByNftId(int nftId) {
+		List<UserInfoVo> userList = new ArrayList<>();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetOwnerListByNftIdSql(nftId);
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            while(rs.next()) {
+	            	UserInfoVo user = new UserInfoVo();
+	            	user.setUserId(rs.getString("USER_ID"));
+	            	user.setNickname(rs.getString("NICKNAME"));
+	            	user.setRegisterDate(rs.getTimestamp("REGISTER_DATE"));
+	            	userList.add(user);
+	            }
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+			
+		return userList;
+	}
+	
+	// find owner by nft uri
+	public List<UserInfoVo> getOwnerListByNftUri(String nftUri) {
+		List<UserInfoVo> userList = new ArrayList<>();
+		
+		DbConnector DB = DbConnector.getInstance();
+		
+		Connection conn = DB.open();
+		
+		Statement stmt = null;
+		
+		String sql = sqlManager.getGetOwnerListByNftUriSql(nftUri);
+		
+	    try {
+	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
+	            stmt = conn.createStatement();
+	            // SQL문 실행하기 --> 결과 행 리턴된 (예외처리 요구됨)
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            while(rs.next()) {
+	            	UserInfoVo user = new UserInfoVo();
+	            	user.setUserId(rs.getString("USER_ID"));
+	            	user.setNickname(rs.getString("NICKNAME"));
+	            	user.setRegisterDate(rs.getTimestamp("REGISTER_DATE"));
+	            	userList.add(user);
+	            }
+	    } catch (SQLException e) {
+	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
+	    } finally {
+	        if (stmt != null) {
+	            try {
+	                stmt.close();
+	            } catch (SQLException e) { }
+	        }
+	    }        
+
+		DB.close();
+		
+		return userList;
+	}
 	
 	// find NFT by userID
 	public List<NftInfoVo> getNftListByUserId(String userID) {
