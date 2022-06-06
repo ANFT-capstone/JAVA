@@ -1,5 +1,7 @@
 package anft.demo.api.controller;
 
+import DAO.DatabaseManager;
+import DataVo.NftInfoVo;
 import anft.demo.api.domain.entity.NFT;
 import anft.demo.api.service.NFTService;
 import lombok.RequiredArgsConstructor;
@@ -15,35 +17,30 @@ public class NFTController {
 
     private final NFTService nftService;
 
-    // NFT DB에 추가
-    @PostMapping
-    public NFT addNFT(@RequestParam(value="hashcode", required = true) String hashcode, String ownerId, @RequestParam(required = true) Double price) {
-        if(ownerId == null)
-            ownerId = "none";
-        return nftService.addNFT(hashcode, ownerId, price);
-    }
-
-    // DB의 NFT 리스트 가져오기
+    // NFT 전체 목록 조회
     @GetMapping
-    public Iterable<NFT> nfts() {
+    public List<NftInfoVo> nftList() {
+
         return nftService.findAll();
     }
 
-    // NFT의 hashcode로 가져오기
-    @GetMapping(value = "/searchByHashcode/{hashcode}")
-    public Optional<NFT> findByHashcode(@PathVariable String hashcode) {
-        return Optional.ofNullable(nftService.findByHashcode(hashcode));
+    /*
+    // NFT 소유자 지갑 주소로 찾기
+    @GetMapping(value = "/searchByOwner/{ownerAddr}")
+    public List<NftInfoVo> findByOwnerAddr(@PathVariable String ownerAddr) {
+        //return nftService.findByOwnerAddr(ownerAddr);
     }
 
-    // NFT의 소유자 id로 가져오기
-    @GetMapping(value = "/searchByOwnerId/{ownerId}")
-    public Optional<List<NFT>> findByOwnerId(@PathVariable String ownerId) {
-        return Optional.ofNullable(nftService.findAllByOwnerId(ownerId));
+    // NFT 제작자 지갑 주소로 찾기
+    @GetMapping(value = "/searchByCreator/{creatorAddr}")
+    public List<NftInfoVo> findByCreatorAddr(@PathVariable String creatorAddr) {
+        //return nftService.findByCreatorAddr(creatorAddr);
     }
 
-    // NFT의 hashcode로 지우기
-    @DeleteMapping
-    public void deleteNFTByHashcode(@RequestParam String hashcode) {
-        nftService.deleteNFT(hashcode);
+    // 새로운 NFT 정보 DB에 저장
+    @PostMapping
+    public NftInfoVo addNFT() {
+        return nftService.addNFT();
     }
+    */
 }
