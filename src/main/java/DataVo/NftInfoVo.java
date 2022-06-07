@@ -11,7 +11,6 @@ public class NftInfoVo {
 	public String uri;
 	public char is_sell;
 	public String createUser;
-	public String ownerUser;
 	
 	public String getNftNumber() {
 		return nftNumber;
@@ -60,12 +59,6 @@ public class NftInfoVo {
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
-	}
-	public String getOwnerUser() {
-		return ownerUser;
-	}
-	public void setOwnerUser(String ownerUser) {
-		this.ownerUser = ownerUser;
 	}
 	
 }

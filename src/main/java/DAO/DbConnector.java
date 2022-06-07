@@ -53,11 +53,11 @@ public class DbConnector {
                 conn = DriverManager.getConnection(url, db_username, db_password);
 
                 // 성공시 메시지 출력
-                System.out.println("=== DATABASE Connerct Success ===");
+                System.out.println("=== DATABASE Connect Success ===");
 
             } catch (ClassNotFoundException e) {            
                 // 실패시 메시지와 에러 내용 출력
-                System.out.println("=== DATABASE Connerct Fail ===");
+                System.out.println("=== DATABASE Connect Fail ===");
                 System.out.println(e.getMessage());
 
             } catch (SQLException e) {
