@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
@@ -29,21 +31,24 @@ public class NFTService {
         return databaseManager.getAllNft();
     }
 
-    /*
-    // NFT 소유자 지갑 주소로 찾기
-    public List<NftInfoVo> findByOwnerAddr(@RequestParam String ownerAddress) {
-        //return databaseManager.getNftByOwnerAddr();
+    // NFT id로 조회
+    public NftInfoVo findByNftId(int nftId) {
+        return databaseManager.getNftByNftId(nftId);
     }
 
-    // NFT 제작자 지갑 주소로 찾기
-    public List<NftInfoVo> findByCreatorAddr(@RequestParam String creatorAddress) {
-        //return databaseManager.getNftByCreatorAddr();
+    // NFT URI로 조회
+    public NftInfoVo findByNftId(String nftUri) {
+        return databaseManager.getNftByNftId(nftUri);
+    }
+
+    // NFT 제작자 id로 조회
+    public List<NftInfoVo> findByUserId(String userId) {
+        return databaseManager.getNftListByUserId(userId);
     }
 
     // 새로운 NFT 정보 DB에 저장
     @Transactional
-    public NftInfoVo addNFT() {
-        return databaseManager.save(new NftInfoVo());
+    public void addNFT(int nftId, String label, String category, String createDate, int price, String uri, char isSell, String createUser) {
+        databaseManager.setNewNft(nftId, label, category, createDate, price, uri, isSell, createUser);
     }
-    */
 }
