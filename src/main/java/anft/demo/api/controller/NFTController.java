@@ -49,7 +49,7 @@ public class NFTController {
     @PostMapping
     public void addNFT(int nftId, String label, String category, int price, String uri, char isSell, String createUser) {
         LocalDate today = LocalDate.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yy/MM/dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyMMdd");
         String createDate = today.format(dateTimeFormatter);
 
         nftService.addNFT(nftId, label, category, createDate, price, uri, isSell, createUser);

@@ -32,7 +32,7 @@ public class CategoryController {
     @PostMapping
     public void addCatetory(int categoryId, String category, String createUser, int nftNums) {
         LocalDate today = LocalDate.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yy/MM/dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyMMdd");
         String createDate = today.format(dateTimeFormatter);
 
         categoryService.addCatetory(categoryId, category, createDate, createUser, nftNums);
