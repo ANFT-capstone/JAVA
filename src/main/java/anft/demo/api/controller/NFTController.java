@@ -1,10 +1,15 @@
 package anft.demo.api.controller;
 
+import DAO.DatabaseManager;
+import DataVo.NftInfoVo;
 import anft.demo.api.domain.entity.NFT;
 import anft.demo.api.service.NFTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,35 +20,38 @@ public class NFTController {
 
     private final NFTService nftService;
 
-    // NFT DB에 추가
-    @PostMapping
-    public NFT addNFT(@RequestParam(value="hashcode", required = true) String hashcode, String ownerId, @RequestParam(required = true) Double price) {
-        if(ownerId == null)
-            ownerId = "none";
-        return nftService.addNFT(hashcode, ownerId, price);
-    }
-
-    // DB의 NFT 리스트 가져오기
+    // NFT 전체 목록 조회
     @GetMapping
-    public Iterable<NFT> nfts() {
+    public List<NftInfoVo> nftList() {
+
         return nftService.findAll();
     }
 
-    // NFT의 hashcode로 가져오기
-    @GetMapping(value = "/searchByHashcode/{hashcode}")
-    public Optional<NFT> findByHashcode(@PathVariable String hashcode) {
-        return Optional.ofNullable(nftService.findByHashcode(hashcode));
+    // NFT id로 조회
+    @GetMapping(value = "/searchByNftId/{NftId}")
+    public NftInfoVo findByNftId(@PathVariable int nftId) {
+        return nftService.findByNftId(nftId);
     }
 
-    // NFT의 소유자 id로 가져오기
-    @GetMapping(value = "/searchByOwnerId/{ownerId}")
-    public Optional<List<NFT>> findByOwnerId(@PathVariable String ownerId) {
-        return Optional.ofNullable(nftService.findAllByOwnerId(ownerId));
+    // NFT URI로 조회
+    @GetMapping(value = "/searchByNftUri/{NftUri}")
+    public NftInfoVo findByNftId(@PathVariable String NftUri) {
+        return nftService.findByNftId(NftUri);
     }
 
-    // NFT의 hashcode로 지우기
-    @DeleteMapping
-    public void deleteNFTByHashcode(@RequestParam String hashcode) {
-        nftService.deleteNFT(hashcode);
+    // NFT 제작자 id로 조회
+    @GetMapping(value = "/searchByUserId/{UserId}")
+    public List<NftInfoVo> findByUserId(@PathVariable String UserId) {
+        return nftService.findByUserId(UserId);
+    }
+
+    // 새로운 NFT 정보 DB에 저장
+    @PostMapping
+    public void addNFT(int nftId, String label, String category, int price, String uri, char isSell, String createUser) {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyMMdd");
+        String createDate = today.format(dateTimeFormatter);
+
+        nftService.addNFT(nftId, label, category, createDate, price, uri, isSell, createUser);
     }
 }
