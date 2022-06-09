@@ -1,4 +1,4 @@
-package anft.demo.DataVo;
+package DataVo;
 
 import java.sql.Timestamp;
 

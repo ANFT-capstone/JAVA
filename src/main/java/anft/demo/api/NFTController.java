@@ -1,6 +1,6 @@
 package anft.demo.api;
 
-import anft.demo.DataVo.NftInfoVo;
+import DataVo.NftInfoVo;
 import anft.demo.service.NFTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

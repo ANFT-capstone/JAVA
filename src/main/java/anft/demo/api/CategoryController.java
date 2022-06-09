@@ -1,6 +1,6 @@
 package anft.demo.api;
 
-import anft.demo.DataVo.NftCategoryVo;
+import DataVo.NftCategoryVo;
 import anft.demo.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

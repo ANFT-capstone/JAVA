@@ -1,7 +1,7 @@
 package anft.demo.service;
 
-import anft.demo.DAO.DatabaseManager;
-import anft.demo.DataVo.NftCategoryVo;
+import DAO.DatabaseManager;
+import DataVo.NftCategoryVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

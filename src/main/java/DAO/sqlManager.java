@@ -1,4 +1,4 @@
-package anft.demo.DAO;
+package DAO;
 
 public class sqlManager {
 	/*sql to get information from database*/

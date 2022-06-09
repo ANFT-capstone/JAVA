@@ -1,4 +1,4 @@
-package anft.demo.DataVo;
+package DataVo;
 
 public class FunctionInfoVo {
 	public String functionLabel;

@@ -1,4 +1,4 @@
-package anft.demo.DAO;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,11 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import anft.demo.DataVo.FunctionInfoVo;
-import anft.demo.DataVo.NftCategoryVo;
-import anft.demo.DataVo.NftInfoVo;
-import anft.demo.DataVo.RequestHistoryVo;
-import anft.demo.DataVo.UserInfoVo;
+import DataVo.FunctionInfoVo;
+import DataVo.NftInfoVo;
+import DataVo.RequestHistoryVo;
+import DataVo.NftCategoryVo;
+import DataVo.UserInfoVo;
 import org.springframework.stereotype.Repository;
 
 @Repository
