@@ -1,4 +1,4 @@
-package DAO;
+package anft.demo.DAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,12 +7,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import DataVo.FunctionInfoVo;
-import DataVo.NftCategoryVo;
-import DataVo.NftInfoVo;
-import DataVo.RequestHistoryVo;
-import DataVo.UserInfoVo;
+import anft.demo.DataVo.FunctionInfoVo;
+import anft.demo.DataVo.NftCategoryVo;
+import anft.demo.DataVo.NftInfoVo;
+import anft.demo.DataVo.RequestHistoryVo;
+import anft.demo.DataVo.UserInfoVo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class DatabaseManager {
 	public void setNewOwnerGroup(int nftId, String userId) {
 		DbConnector DB = DbConnector.getInstance();
@@ -24,9 +26,9 @@ public class DatabaseManager {
 		String sql = sqlManager.setSetNewOwnerGroupSql(nftId, userId);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt.executeUpdate(sql);
 	    } catch (SQLException e) {
 	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
@@ -52,9 +54,9 @@ public class DatabaseManager {
 		String sql = sqlManager.setSetNewFunctionSql(functionId, functionLabel, parameterList, httpUrl);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt.executeUpdate(sql);
 	    } catch (SQLException e) {
 	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
@@ -80,9 +82,9 @@ public class DatabaseManager {
 		String sql = sqlManager.setSetNewCategorySql(categoryId, category, createDate, createUser, nftNums);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt.executeUpdate(sql);
 	    } catch (SQLException e) {
 	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
@@ -108,9 +110,9 @@ public class DatabaseManager {
 		String sql = sqlManager.setSetNewHistorySql(requestId, requestUser, requestFunction, requestDate, parameters, result);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt.executeUpdate(sql);
 	    } catch (SQLException e) {
 	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
@@ -136,9 +138,9 @@ public class DatabaseManager {
 		String sql = sqlManager.setSetNewNftSql(nftId, label, category, createDate, price, uri, isSell, createUser);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt.executeUpdate(sql);
 	    } catch (SQLException e) {
 	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
@@ -164,9 +166,9 @@ public class DatabaseManager {
 		String sql = sqlManager.setSetNewUserSql(userId, nickName,registerDate);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt.executeUpdate(sql);
 	    } catch (SQLException e) {
 	        System.out.println("MySQL SQL Fail: " + e.getMessage());                
@@ -194,9 +196,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetNftByNftUriSql(NftUri);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            if(rs.next()) {
@@ -237,9 +239,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetNftByNftIdSql(NftId);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            if(rs.next()) {
@@ -280,9 +282,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetOwnerListByNftIdSql(nftId);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -320,9 +322,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetOwnerListByNftUriSql(nftUri);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -360,9 +362,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetNftListByUserIdSql(userID);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -405,9 +407,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetUserByUserIdSql(userID);
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            if(rs.next()) {
@@ -442,9 +444,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetAllUserSql();
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -481,9 +483,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetAllNftSql();
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -525,9 +527,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetAllCategorySql();
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -566,9 +568,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetAllFunctionSql();
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
@@ -606,9 +608,9 @@ public class DatabaseManager {
 		String sql = sqlManager.getGetAllRequestHistorySql();
 		
 	    try {
-	            // SQL¹®À» ½ÇÇàÇÒ ¼ö ÀÖ´Â °´Ã¼ »ý¼º (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            stmt = conn.createStatement();
-	            // SQL¹® ½ÇÇàÇÏ±â --> °á°ú Çà ¸®ÅÏµÈ (¿¹¿ÜÃ³¸® ¿ä±¸µÊ)
+	            // SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ --> ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ (ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½)
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {

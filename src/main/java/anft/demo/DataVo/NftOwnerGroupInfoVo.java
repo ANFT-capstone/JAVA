@@ -1,4 +1,4 @@
-package DataVo;
+package anft.demo.DataVo;
 
 public class NftOwnerGroupInfoVo {
 	public int nftId;

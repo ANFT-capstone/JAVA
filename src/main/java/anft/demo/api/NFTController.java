@@ -1,17 +1,13 @@
-package anft.demo.api.controller;
+package anft.demo.api;
 
-import DAO.DatabaseManager;
-import DataVo.NftInfoVo;
-import anft.demo.api.domain.entity.NFT;
-import anft.demo.api.service.NFTService;
+import anft.demo.DataVo.NftInfoVo;
+import anft.demo.service.NFTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,7 +24,7 @@ public class NFTController {
     }
 
     // NFT id로 조회
-    @GetMapping(value = "/searchByNftId/{NftId}")
+    @GetMapping(value = "/{NftId}/searchByNftId")
     public NftInfoVo findByNftId(@PathVariable int nftId) {
         return nftService.findByNftId(nftId);
     }

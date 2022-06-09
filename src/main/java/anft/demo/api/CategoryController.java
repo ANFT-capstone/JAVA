@@ -1,15 +1,13 @@
-package anft.demo.api.controller;
+package anft.demo.api;
 
-import DataVo.NftCategoryVo;
-import DataVo.NftInfoVo;
-import anft.demo.api.service.CategoryService;
+import anft.demo.DataVo.NftCategoryVo;
+import anft.demo.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
