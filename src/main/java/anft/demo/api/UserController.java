@@ -1,8 +1,7 @@
-package anft.demo.api.controller;
+package anft.demo.api;
 
-import DataVo.UserInfoVo;
-import anft.demo.api.service.NFTService;
-import anft.demo.api.service.UserService;
+import anft.demo.DataVo.UserInfoVo;
+import anft.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

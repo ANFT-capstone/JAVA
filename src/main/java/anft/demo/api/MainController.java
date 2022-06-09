@@ -1,9 +1,7 @@
-package anft.demo.api.controller;
+package anft.demo.api;
 
-import DataVo.FunctionInfoVo;
-import DataVo.NftInfoVo;
-import anft.demo.api.service.FunctionInfoService;
-import anft.demo.api.service.NFTService;
+import anft.demo.DataVo.FunctionInfoVo;
+import anft.demo.service.FunctionInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +19,7 @@ public class MainController {
     // NFT 전체 목록 조회
     @GetMapping
     public List<FunctionInfoVo> functionList() {
-
+        System.out.println("main controller");
         return functionInfoService.findAll();
     }
 }

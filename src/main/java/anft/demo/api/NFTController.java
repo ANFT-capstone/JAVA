@@ -1,21 +1,17 @@
-package anft.demo.api.controller;
+package anft.demo.api;
 
-import DAO.DatabaseManager;
-import DataVo.NftInfoVo;
-import anft.demo.api.domain.entity.NFT;
-import anft.demo.api.service.NFTService;
+import anft.demo.DataVo.NftInfoVo;
+import anft.demo.service.NFTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/nft")
+@RequestMapping(value = "/{id}/nft")
 public class NFTController {
 
     private final NFTService nftService;
@@ -47,11 +43,11 @@ public class NFTController {
 
     // 새로운 NFT 정보 DB에 저장
     @PostMapping
-    public void addNFT(int nftId, String label, String category, int price, String uri, char isSell, String createUser) {
+    public void addNFT(String label, String category, int price, String uri, char isSell, String createUser) {
         LocalDate today = LocalDate.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyMMdd");
         String createDate = today.format(dateTimeFormatter);
 
-        nftService.addNFT(nftId, label, category, createDate, price, uri, isSell, createUser);
+        nftService.addNFT(label, category, createDate, price, uri, isSell, createUser);
     }
 }

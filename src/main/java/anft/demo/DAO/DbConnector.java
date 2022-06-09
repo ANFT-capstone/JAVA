@@ -1,4 +1,4 @@
-package DAO;
+package anft.demo.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,8 +15,8 @@ public class DbConnector {
 
     private Connection conn = null;
 
-    // ----- ½Ì±ÛÅæ °´Ã¼ »ı¼ºÀ» À§ÇÑ ÁØºñ ½ÃÀÛ -----
-    // ½Ì±ÛÅæ °´Ã¼
+    // ----- ì‹±ê¸€í†¤ ê°ì²´ ìƒì„±ì„ ìœ„í•œ ì¤€ë¹„ ì‹œì‘ -----
+    // ì‹±ê¸€í†¤ ê°ì²´
     private static DbConnector current;
 
     public static DbConnector getInstance() {
@@ -25,43 +25,43 @@ public class DbConnector {
         }
         return current;
     }
-    
+
     public void freeInstance() {
         current = null;
     }
 
     private DbConnector() { }
 
-    /** µ¥ÀÌÅÍº£ÀÌ½º¿¡ Á¢¼Ó ÈÄ, Á¢¼Ó °´Ã¼ ¸®ÅÏ */
+    /** ë°ì´í„°ë² ì´ìŠ¤ì— ì ‘ì† í›„, ì ‘ì† ê°ì²´ ë¦¬í„´ */
     public Connection open() {
-        // Áßº¹ ½ÇÇàµÉ °æ¿ì ¹ß»ıµÉ ¹®Á¦¸¦ ¹æÁöÇÏ±â À§ÇØ
-        // Connection °´Ã¼°¡ nullÀÎ °æ¿ì¸¸ Ã³¸®ÇÏµµ·Ï if¹®À¸·Î ±¸¼º
+        // ì¤‘ë³µ ì‹¤í–‰ë  ê²½ìš° ë°œìƒë  ë¬¸ì œë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´
+        // Connection ê°ì²´ê°€ nullì¸ ê²½ìš°ë§Œ ì²˜ë¦¬í•˜ë„ë¡ ifë¬¸ìœ¼ë¡œ êµ¬ì„±
         if (conn == null) {
-            /** µ¥ÀÌÅÍº£ÀÌ½º Á¢¼Ó Ã³¸® */
-            // »ç¿ëÇÏ·Á´Â µ¥ÀÌÅÍº£ÀÌ½º¸íÀ» Æ÷ÇÔÇÑ URL±â¼ú
+            /** ë°ì´í„°ë² ì´ìŠ¤ ì ‘ì† ì²˜ë¦¬ */
+            // ì‚¬ìš©í•˜ë ¤ëŠ” ë°ì´í„°ë² ì´ìŠ¤ëª…ì„ í¬í•¨í•œ URLê¸°ìˆ 
             String urlFormat = "jdbc:mysql://%s:%d/%s?characterEncoding=%s&serverTimezone=UTC";
             String url = String.format(urlFormat, db_hostname, db_portnumber, db_database, db_charset);
 
-            // MySQL JDBCÀÇ µå¶óÀÌ¹ö Å¬·¡½º¸¦ ·ÎµùÇØ¼­ DriverManagerÅ¬·¡½º¿¡ µî·ÏÇÑ´Ù.
+            // MySQL JDBCì˜ ë“œë¼ì´ë²„ í´ë˜ìŠ¤ë¥¼ ë¡œë”©í•´ì„œ DriverManagerí´ë˜ìŠ¤ì— ë“±ë¡í•œë‹¤.
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
-                // DriverManager °´Ã¼¸¦ »ç¿ëÇÏ¿© DB¿¡ Á¢¼ÓÇÑ´Ù.
-                // -> Á¢¼Ó URL, ¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£¸¦ Àü´Ş
-                // -> DriverManager¿¡ µî·ÏµÈ Driver °´Ã¼¸¦ »ç¿ëÇÏ¿© DB¿¡ Á¢¼Ó ÈÄ,
-                // Connection °´Ã¼¸¦ ¸®ÅÏ¹Ş´Â´Ù
+                // DriverManager ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ DBì— ì ‘ì†í•œë‹¤.
+                // -> ì ‘ì† URL, ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸ë¥¼ ì „ë‹¬
+                // -> DriverManagerì— ë“±ë¡ëœ Driver ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ DBì— ì ‘ì† í›„,
+                // Connection ê°ì²´ë¥¼ ë¦¬í„´ë°›ëŠ”ë‹¤
                 conn = DriverManager.getConnection(url, db_username, db_password);
 
-                // ¼º°ø½Ã ¸Ş½ÃÁö Ãâ·Â
+                // ì„±ê³µì‹œ ë©”ì‹œì§€ ì¶œë ¥
                 System.out.println("=== DATABASE Connect Success ===");
 
-            } catch (ClassNotFoundException e) {            
-                // ½ÇÆĞ½Ã ¸Ş½ÃÁö¿Í ¿¡·¯ ³»¿ë Ãâ·Â
+            } catch (ClassNotFoundException e) {
+                // ì‹¤íŒ¨ì‹œ ë©”ì‹œì§€ì™€ ì—ëŸ¬ ë‚´ìš© ì¶œë ¥
                 System.out.println("=== DATABASE Connect Fail ===");
                 System.out.println(e.getMessage());
 
             } catch (SQLException e) {
-                // ½ÇÆĞ½Ã ¸Ş½ÃÁö¿Í ¿¡·¯ ³»¿ë Ãâ·Â
+                // ì‹¤íŒ¨ì‹œ ë©”ì‹œì§€ì™€ ì—ëŸ¬ ë‚´ìš© ì¶œë ¥
                 System.out.println("=== DATABASE Connect Fail ===");
                 System.out.println(e.getMessage());
             }
@@ -69,10 +69,10 @@ public class DbConnector {
         return conn;
     }
 
-    /** µ¥ÀÌÅÍº£ÀÌ½ºÀÇ Á¢¼ÓÀ» ÇØÁ¦ */
+    /** ë°ì´í„°ë² ì´ìŠ¤ì˜ ì ‘ì†ì„ í•´ì œ */
     public void close() {
         if (conn != null) {
-            /** µ¥ÀÌÅÍº£ÀÌ½º Á¢¼Ó ÇØÁ¦ Ã³¸®*/
+            /** ë°ì´í„°ë² ì´ìŠ¤ ì ‘ì† í•´ì œ ì²˜ë¦¬*/
             try {
                 conn.close();
                 System.out.println(" === DATABASE Disconnect Success ===");

@@ -1,12 +1,10 @@
-package anft.demo.api.service;
+package anft.demo.service;
 
-import DAO.DatabaseManager;
-import DataVo.FunctionInfoVo;
-import DataVo.NftInfoVo;
+import anft.demo.DAO.DatabaseManager;
+import anft.demo.DataVo.FunctionInfoVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
