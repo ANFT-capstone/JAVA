@@ -1,6 +1,6 @@
 package anft.demo.api;
 
-import DataVo.NftCategoryVo;
+import anft.demo.DataVo.NftCategoryVo;
 import anft.demo.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +28,11 @@ public class CategoryController {
 
     // 새로운 NFT 카테고리 정보 DB에 저장
     @PostMapping
-    public void addCatetory(int categoryId, String category, String createUser, int nftNums) {
+    public void addCatetory(String category, String createUser, int nftNums) {
         LocalDate today = LocalDate.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyMMdd");
         String createDate = today.format(dateTimeFormatter);
 
-        categoryService.addCatetory(categoryId, category, createDate, createUser, nftNums);
+        categoryService.addCatetory(category, createDate, createUser, nftNums);
     }
 }

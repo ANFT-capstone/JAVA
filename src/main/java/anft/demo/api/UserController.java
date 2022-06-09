@@ -1,6 +1,6 @@
 package anft.demo.api;
 
-import DataVo.UserInfoVo;
+import anft.demo.DataVo.UserInfoVo;
 import anft.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

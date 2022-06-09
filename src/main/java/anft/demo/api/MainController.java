@@ -1,6 +1,6 @@
 package anft.demo.api;
 
-import DataVo.FunctionInfoVo;
+import anft.demo.DataVo.FunctionInfoVo;
 import anft.demo.service.FunctionInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

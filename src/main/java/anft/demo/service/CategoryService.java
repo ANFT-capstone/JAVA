@@ -1,7 +1,7 @@
 package anft.demo.service;
 
-import DAO.DatabaseManager;
-import DataVo.NftCategoryVo;
+import anft.demo.DAO.DatabaseManager;
+import anft.demo.DataVo.NftCategoryVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class CategoryService {
 
     // 새로운 NFT 카테고리 정보 DB에 저장
     @Transactional
-    public void addCatetory(int categoryId, String category, String createDate, String createUser, int nftNums) {
-        databaseManager.setNewCategory(categoryId, category, createDate, createUser, nftNums);
+    public void addCatetory(String category, String createDate, String createUser, int nftNums) {
+        databaseManager.setNewCategory(category, createDate, createUser, nftNums);
     }
 }
