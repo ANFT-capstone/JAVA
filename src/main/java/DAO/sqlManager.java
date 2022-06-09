@@ -36,32 +36,32 @@ public class sqlManager {
 	/*sql to insert information to database*/
 	private static String setNewUserSql = "insert into user_info(user_id,nickname,register_date)\r\n"
 											+ "value(\"{param1}\",\"{param2}\",STR_TO_DATE('{param3}', '%Y%m%d'))";
-	private static String setNewNftSql = "insert into nft_info(NFT_number,Label,Category,create_date,price,URI,is_sell,create_user)\r\n"
-											+ "value({param1},\"{param2}\",\"{param3}\",STR_TO_DATE('{param4}', '%Y%m%d'),{param5},\"{param6}\",'{param7}',\"{param8}\")";
-	private static String setNewHistorySql = "insert into request_history(request_id,request_user,request_function,request_date,parameters,result)\r\n"
-											+ "value({param1},\"{param2}\",{param3},STR_TO_DATE('{param4}', '%Y%m%d'),\"{param5}\",'{param6}')";
-	private static String setNewCategorySql = "insert into nft_category(category_number,category,create_date,create_user,nft_nums)\r\n"
-											+"value({param1},\"{param2}\",STR_TO_DATE('{param3}', '%Y%m%d'),\"{param4}\",{param5})";
-	private static String setNewFunctionSql = "insert into function_info(function_ID,function_label,parameter_list,http_url)\r\n"
-											+"value({param1},\"{param2}\",\"{param3}\",\"{param4}\")";
+	private static String setNewNftSql = "insert into nft_info(Label,Category,create_date,price,URI,is_sell,create_user)\r\n"
+											+ "value(\"{param2}\",\"{param3}\",STR_TO_DATE('{param4}', '%Y%m%d'),{param5},\"{param6}\",'{param7}',\"{param8}\")";
+	private static String setNewHistorySql = "insert into request_history(request_user,request_function,request_date,parameters,result)\r\n"
+											+ "value(\"{param2}\",{param3},STR_TO_DATE('{param4}', '%Y%m%d'),\"{param5}\",'{param6}')";
+	private static String setNewCategorySql = "insert into nft_category(category,create_date,create_user,nft_nums)\r\n"
+											+"value(\"{param2}\",STR_TO_DATE('{param3}', '%Y%m%d'),\"{param4}\",{param5})";
+	private static String setNewFunctionSql = "insert into function_info(function_label,parameter_list,http_url)\r\n"
+											+"value(\"{param2}\",\"{param3}\",\"{param4}\")";
 	private static String setNewOwnerGroupSql = "insert into nft_owner_group_info(nft_id, user_id)\r\n"
 											+"value({param1},\"{param2}\")";
 	
 	/*set functions*/
-	public static String setSetNewNftSql(int nftId, String label, String category, String createDate, int price, String uri, char isSell, String createUser) {
-		return setNewNftSql.replace("{param1}", Integer.toString(nftId)).replace("{param2}", label).replace("{param3}", category).replace("{param4}", createDate).replace("{param5}", Integer.toString(price)).replace("{param6}", uri).replace("{param7}", Character.toString(isSell)).replace("{param8}", createUser);
+	public static String setSetNewNftSql(String label, String category, String createDate, int price, String uri, char isSell, String createUser) {
+		return setNewNftSql.replace("{param2}", label).replace("{param3}", category).replace("{param4}", createDate).replace("{param5}", Integer.toString(price)).replace("{param6}", uri).replace("{param7}", Character.toString(isSell)).replace("{param8}", createUser);
 	}
-	public static String setSetNewCategorySql(int categoryId, String category, String createDate, String createUser, int nftNums) {
-		return setNewCategorySql.replace("{param1}", Integer.toString(categoryId)).replace("{param2}", category).replace("{param3}", createDate).replace("{param4}", createUser).replace("{param5}", Integer.toString(nftNums));
+	public static String setSetNewCategorySql(String category, String createDate, String createUser, int nftNums) {
+		return setNewCategorySql.replace("{param2}", category).replace("{param3}", createDate).replace("{param4}", createUser).replace("{param5}", Integer.toString(nftNums));
 	}
 	public static String setSetNewUserSql(String userId, String nickName,String registerDate) {
 		return setNewUserSql.replace("{param1}", userId).replace("{param2}", nickName).replace("{param3}", registerDate);
 	}
-	public static String setSetNewFunctionSql(int functionId, String functionLabel, String parameterList, String httpUrl) {
-		return setNewFunctionSql.replace("{param1}", Integer.toString(functionId)).replace("{param2}", functionLabel).replace("{param3}", parameterList).replace("{param4}", httpUrl);
+	public static String setSetNewFunctionSql(String functionLabel, String parameterList, String httpUrl) {
+		return setNewFunctionSql.replace("{param2}", functionLabel).replace("{param3}", parameterList).replace("{param4}", httpUrl);
 	}
-	public static String setSetNewHistorySql(int requestId, String requestUser, int requestFunction, String requestDate, String parameters, char result) {
-		return setNewHistorySql.replace("{param1}", Integer.toString(requestId)).replace("{param2}", requestUser).replace("{param3}", Integer.toString(requestFunction)).replace("{param4}", requestDate).replace("{param5}", parameters).replace("{param6}", Character.toString(result));
+	public static String setSetNewHistorySql(String requestUser, int requestFunction, String requestDate, String parameters, char result) {
+		return setNewHistorySql.replace("{param2}", requestUser).replace("{param3}", Integer.toString(requestFunction)).replace("{param4}", requestDate).replace("{param5}", parameters).replace("{param6}", Character.toString(result));
 	}
 	public static String setSetNewOwnerGroupSql(int nftId, String userId) {
 		return setNewOwnerGroupSql.replace("{param1}", Integer.toString(nftId)).replace("{param2}", userId);
