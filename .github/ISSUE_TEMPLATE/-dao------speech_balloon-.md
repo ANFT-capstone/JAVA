@@ -1,6 +1,6 @@
 ---
-name: "\bDAO 요청서"
-about: DB에 기능 추가를 요청 템플릿
+name: "\bDAO 요청서 :speech_balloon:"
+about: DB에 기능 추가를 요청할 때
 title: "[DB]"
 labels: 신기능
 assignees: YunJiye
