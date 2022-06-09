@@ -42,14 +42,14 @@ public class DatabaseManager {
 	}
 	
 	// Date ==> (string)20220607
-	public void setNewFunction(int functionId, String functionLabel, String parameterList, String httpUrl) {
+	public void setNewFunction(String functionLabel, String parameterList, String httpUrl) {
 		DbConnector DB = DbConnector.getInstance();
 		
 		Connection conn = DB.open();
 		
 		Statement stmt = null;
 		
-		String sql = sqlManager.setSetNewFunctionSql(functionId, functionLabel, parameterList, httpUrl);
+		String sql = sqlManager.setSetNewFunctionSql(functionLabel, parameterList, httpUrl);
 		
 	    try {
 	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
@@ -70,14 +70,14 @@ public class DatabaseManager {
 	}
 	
 	// Date ==> (string)20220607
-	public void setNewCategory(int categoryId, String category, String createDate, String createUser, int nftNums) {
+	public void setNewCategory(String category, String createDate, String createUser, int nftNums) {
 		DbConnector DB = DbConnector.getInstance();
 		
 		Connection conn = DB.open();
 		
 		Statement stmt = null;
 		
-		String sql = sqlManager.setSetNewCategorySql(categoryId, category, createDate, createUser, nftNums);
+		String sql = sqlManager.setSetNewCategorySql(category, createDate, createUser, nftNums);
 		
 	    try {
 	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
@@ -98,14 +98,14 @@ public class DatabaseManager {
 	}
 	
 	// Date ==> (string)20220607
-	public void setNewHistory(int requestId, String requestUser, int requestFunction, String requestDate, String parameters, char result) {
+	public void setNewHistory(String requestUser, int requestFunction, String requestDate, String parameters, char result) {
 		DbConnector DB = DbConnector.getInstance();
 		
 		Connection conn = DB.open();
 		
 		Statement stmt = null;
 		
-		String sql = sqlManager.setSetNewHistorySql(requestId, requestUser, requestFunction, requestDate, parameters, result);
+		String sql = sqlManager.setSetNewHistorySql(requestUser, requestFunction, requestDate, parameters, result);
 		
 	    try {
 	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
@@ -126,14 +126,14 @@ public class DatabaseManager {
 	}
 	
 	// Date ==> (string)20220607
-	public void setNewNft(int nftId, String label, String category, String createDate, int price, String uri, char isSell, String createUser) {
+	public void setNewNft(String label, String category, String createDate, int price, String uri, char isSell, String createUser) {
 		DbConnector DB = DbConnector.getInstance();
 		
 		Connection conn = DB.open();
 		
 		Statement stmt = null;
 		
-		String sql = sqlManager.setSetNewNftSql(nftId, label, category, createDate, price, uri, isSell, createUser);
+		String sql = sqlManager.setSetNewNftSql(label, category, createDate, price, uri, isSell, createUser);
 		
 	    try {
 	            // SQL문을 실행할 수 있는 객체 생성 (예외처리 요구됨)
