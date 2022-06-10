@@ -14,8 +14,7 @@ public enum FunctionIndex {
     ADD_CATEGORY(11),
 
     USER_LIST(20),
-    FIND_USE_BY_USER_ID(21),
-    ADD_USER(22);
+    FIND_USE_BY_USER_ID(21);
 
     private final int value;
     FunctionIndex(int value) {

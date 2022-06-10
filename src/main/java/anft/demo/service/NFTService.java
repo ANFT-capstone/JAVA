@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -37,7 +39,12 @@ public class NFTService {
 
     // 새로운 NFT 정보 DB에 저장
     @Transactional
-    public void addNFT(String label, String category, String createDate, int price, String uri, char isSell, String createUser) {
+    public void addNFT(String label, String category, int price, String uri, char isSell, String createUser) {
+
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String createDate = today.format(dateTimeFormatter);
+
         databaseManager.setNewNft(label, category, createDate, price, uri, isSell, createUser);
     }
 }
