@@ -24,7 +24,7 @@ public class UserController {
     }
 
     // 유저 id로 조회
-    @GetMapping(value = "/searchByUserId/{userId}")
+    @GetMapping(value = "/userId/{userId}")
     public UserInfoVo findByUserId(@PathVariable String userId) {
 
         return userService.findByUserId(userId);

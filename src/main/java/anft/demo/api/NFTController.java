@@ -37,8 +37,8 @@ public class NFTController {
     }
 
     // NFT id로 조회
-    @GetMapping(value = "/searchByNftId/{NftId}")
-    public NftInfoVo findByNftId(@PathVariable int nftId, @PathVariable(value = "id") String userId) {
+    @GetMapping(value = "/nftId/{nftId}")
+    public NftInfoVo findByNftId(@PathVariable(value = "nftId") int nftId, @PathVariable(value = "id") String userId) {
 
         // 요청한 유저가 DB에 없는 경우 DB에 추가
         if(userService.validateUser(userId)) userService.addUser(userId);
@@ -51,8 +51,8 @@ public class NFTController {
     }
 
     // NFT URI로 조회
-    @GetMapping(value = "/searchByNftUri/{NftUri}")
-    public NftInfoVo findByNftUri(@PathVariable String nftUri, @PathVariable(value = "id") String userId) {
+    @GetMapping(value = "/nftUri/{nftUri}")
+    public NftInfoVo findByNftUri(@PathVariable(value = "nftUri") String nftUri, @PathVariable(value = "id") String userId) {
 
         // 요청한 유저가 DB에 없는 경우 DB에 추가
         if(userService.validateUser(userId)) userService.addUser(userId);
@@ -65,8 +65,8 @@ public class NFTController {
     }
 
     // NFT 제작자 id로 조회
-    @GetMapping(value = "/searchByUserId/{UserId}")
-    public List<NftInfoVo> findByUserId(@PathVariable String id, @PathVariable(value = "id") String userId) {
+    @GetMapping(value = "/userId/{userId}")
+    public List<NftInfoVo> findByUserId(@PathVariable(value = "userId") String id, @PathVariable(value = "id") String userId) {
 
         // 요청한 유저가 DB에 없는 경우 DB에 추가
         if(userService.validateUser(userId)) userService.addUser(userId);
