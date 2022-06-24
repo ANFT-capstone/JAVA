@@ -31,7 +31,7 @@ public class CategoryController {
 
         // 히스토리 업데이트
         String parameter = "none";
-        historyService.addHistory(userId, CATETORY_LIST.ordinal(), parameter, 'S');
+        historyService.addHistory(userId, CATEGORY_LIST.ordinal(), parameter, 'S');
 
         return categoryService.findAll();
     }
@@ -48,6 +48,6 @@ public class CategoryController {
         String parameter = "category, createUser, nftNums";
         historyService.addHistory(userId, ADD_NFT.ordinal(), parameter, 'S');
 
-        categoryService.addCatetory(category, createUser, nftNums);
+        categoryService.addCategory(category, createUser, nftNums);
     }
 }

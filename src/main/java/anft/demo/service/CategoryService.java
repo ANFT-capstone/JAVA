@@ -23,7 +23,7 @@ public class CategoryService {
 
     // 새로운 NFT 카테고리 정보 DB에 저장
     @Transactional
-    public void addCatetory(String category, String createUser, int nftNums) {
+    public void addCategory(String category, String createUser, int nftNums) {
         LocalDate today = LocalDate.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String createDate = today.format(dateTimeFormatter);

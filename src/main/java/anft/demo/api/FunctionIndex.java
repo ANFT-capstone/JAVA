@@ -10,7 +10,7 @@ public enum FunctionIndex {
     FIND_NFT_BY_USER_ID(3),
     ADD_NFT(4),
 
-    CATETORY_LIST(10),
+    CATEGORY_LIST(10),
     ADD_CATEGORY(11),
 
     USER_LIST(20),

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static anft.demo.api.FunctionIndex.CATETORY_LIST;
+import static anft.demo.api.FunctionIndex.CATEGORY_LIST;
 
 @RestController
 @RequiredArgsConstructor

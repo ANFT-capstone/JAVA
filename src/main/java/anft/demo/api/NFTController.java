@@ -32,7 +32,6 @@ public class NFTController {
         // 히스토리 업데이트
         String parameter = "none";
         historyService.addHistory(userId, NFT_LIST.ordinal(), parameter, 'S');
-
         return nftService.findAll();
     }
 
