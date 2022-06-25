@@ -7,7 +7,6 @@ const pinata = pinataSDK(
   "c1c64cbbfef4d498b892",
   "a29de7216abda210e8c4a54a56596bd71457769be0260c36a046ebd159170b92"
 );
-const axios = require('axios');
 
 var imgIpfs = "";
 
@@ -1154,7 +1153,6 @@ async function makeNFT(img, reqCount, walletAddr) {
   pinata
     .pinFileToIPFS(readableStreamForFile, options)
     .then((result) => {
-      console.log("send data : ", result);
       imgIpfs = result.IpfsHash;
       imgIpfs = "https://gateway.pinata.cloud/ipfs/" + imgIpfs;
       makeJson("ANFT", "This is test", imgIpfs, reqCount);
@@ -1266,7 +1264,7 @@ async function airDropMint(URI, usr, cnt) {
     from: MintAddress,
     gas: "100000000",
   });
-  
+
   await axios
     .post(`http://3.39.153.23/${result.to}/nft`, {
       label: `label ${result.transactionHash}`,
@@ -1293,7 +1291,7 @@ async function airDropMint(URI, usr, cnt) {
     console.log(error);
   }
 
-  //console.log(result);
+  console.log(result);
 }
 
 async function setNotRevealedURI(URI) {
@@ -1331,6 +1329,7 @@ safeTransferFrom(
 
 //************************************* */
 //이미지, 발행하고자 하는 nft수, NFT를 받고자 하는 지갑 주소 순으로 파라미터를 넣으면 NFT발행됩니다.
+
 makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
 
 async function callAllNftList() {
@@ -1401,3 +1400,4 @@ async function callUserNftList(owner) {
 }
 //특정 USER의 nft리스트를 크롤링하여 DB에 저장 TODO://DB에 저장 부분 오류
 //callUserNftList(0xdaF9beECd6a285a1b1688f2478A923727AB1Ec13);
+

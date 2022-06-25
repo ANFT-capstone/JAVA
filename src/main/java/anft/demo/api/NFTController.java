@@ -82,8 +82,6 @@ public class NFTController {
     @PostMapping
     public void addNFT(String label, String category, int price, String uri, char isSell, String createUser,
                        @PathVariable(value = "id") String userId) {
-    //public void addNFT(String label, String category, int price, String uri, char isSell, String createUser,
-                      // @PathVariable(value = "id") String userId) {
 
         // 요청한 유저가 DB에 없는 경우 DB에 추가
         if(userService.validateUser(userId)) userService.addUser(userId);
@@ -93,7 +91,6 @@ public class NFTController {
         historyService.addHistory(userId, ADD_NFT.ordinal(), parameter, 'S');
 
 
-        //nftService.addNFT(label, category, price, uri, isSell, createUser);
-        nftService.addNFT(label, category, 0, uri, isSell, createUser);
+        nftService.addNFT(label, category, price, uri, isSell, createUser);
     }
 }
