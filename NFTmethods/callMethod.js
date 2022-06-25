@@ -7,6 +7,7 @@ const pinata = pinataSDK(
   "c1c64cbbfef4d498b892",
   "a29de7216abda210e8c4a54a56596bd71457769be0260c36a046ebd159170b92"
 );
+const axios = require('axios');
 
 var imgIpfs = "";
 
