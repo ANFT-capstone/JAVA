@@ -7,7 +7,6 @@ const pinata = pinataSDK(
   "c1c64cbbfef4d498b892",
   "a29de7216abda210e8c4a54a56596bd71457769be0260c36a046ebd159170b92"
 );
-const axios = require('axios');
 
 var imgIpfs = "";
 
@@ -1154,7 +1153,6 @@ async function makeNFT(img, reqCount, walletAddr) {
   pinata
     .pinFileToIPFS(readableStreamForFile, options)
     .then((result) => {
-      console.log("send data : ", result);
       imgIpfs = result.IpfsHash;
       imgIpfs = "https://gateway.pinata.cloud/ipfs/" + imgIpfs;
       makeJson("ANFT", "This is test", imgIpfs, reqCount);
@@ -1272,27 +1270,11 @@ async function airDropMint(URI, usr, cnt) {
       let fs = require("fs");
       fs.unlink(`json/${i}.json`, (e) => e);
     }
-    await axios
-    .post(`http://3.39.153.23/${result.to}/nft`, {
-      label:result.transactionHash,
-      category:'image', // TODO:현재는 그림이미지만 nft화 시킨다는 가정
-      //price: 0.0, // TODO: 거래 기능 구현 시 수정 필요
-      uri:URI, 
-      isSell:'no',
-      createUser: result.from,
-    })
-    .then(res => {
-      console.log(`statusCode: ${res.status}`);
-      console.log(res);
-    })
-    .catch(error => {
-      console.error(error);
-    })
   } catch (error) {
     console.log(error);
   }
 
-  //console.log(result);
+  console.log(result);
 }
 
 async function setNotRevealedURI(URI) {
@@ -1330,4 +1312,4 @@ safeTransferFrom(
 
 //************************************* */
 //이미지, 발행하고자 하는 nft수, NFT를 받고자 하는 지갑 주소 순으로 파라미터를 넣으면 NFT발행됩니다.
-makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
+//makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
