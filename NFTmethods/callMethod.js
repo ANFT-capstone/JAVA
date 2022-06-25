@@ -1266,19 +1266,14 @@ async function airDropMint(URI, usr, cnt) {
     from: MintAddress,
     gas: "100000000",
   });
-
-  try {
-    for (let i = 1; i <= cnt; i++) {
-      let fs = require("fs");
-      fs.unlink(`json/${i}.json`, (e) => e);
-    }
-    await axios
+  
+  await axios
     .post(`http://3.39.153.23/${result.to}/nft`, {
-      label:result.transactionHash,
-      category:'image', // TODO:현재는 그림이미지만 nft화 시킨다는 가정
-      //price: 0.0, // TODO: 거래 기능 구현 시 수정 필요
+      label: `label ${result.transactionHash}`,
+      category:"image", 
+      price: parseInt("0"),
       uri:URI, 
-      isSell:'no',
+      isSell:"N",
       createUser: result.from,
     })
     .then(res => {
@@ -1288,6 +1283,12 @@ async function airDropMint(URI, usr, cnt) {
     .catch(error => {
       console.error(error);
     })
+
+  try {
+    for (let i = 1; i <= cnt; i++) {
+      let fs = require("fs");
+      fs.unlink(`json/${i}.json`, (e) => e);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -1331,3 +1332,72 @@ safeTransferFrom(
 //************************************* */
 //이미지, 발행하고자 하는 nft수, NFT를 받고자 하는 지갑 주소 순으로 파라미터를 넣으면 NFT발행됩니다.
 makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
+
+async function callAllNftList() {
+  await axios
+    .get("https://testnets-api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20&include_orders=false")
+    .then(res => {
+      // 전체 nft리스트 호출
+      console.log(res.data)
+      //const temp = [...res.data];
+      ///temp.map(({data:{owner}}) => console.log(owner));
+      // res.data.map(({id, image_url, owner, creater}) => {
+      //   console.log("test", owner);
+        // await axios
+        // .post(`http://3.39.153.23/{}/nft`, {
+        //   label: `label ${result.transactionHash}`,
+        //   category:"image", 
+        //   price: parseInt("0"),
+        //   uri:URI, 
+        //   isSell:"N",
+        //   createUser: result.from,
+        // })
+        // .then(res => {
+        //   console.log(`statusCode: ${res.status}`);
+        //   console.log(res);
+        // })
+        // .catch(error => {
+        //   console.error(error);
+        // })
+      // })
+    })
+    .catch(error => {
+      console.error(error);
+    })
+}
+//전체 nft리스트를 크롤링하여 DB에 저장 TODO://DB에 저장 부분 오류
+//callAllNftList();
+
+async function callUserNftList(owner) {
+  await axios
+    .get(`https://testnets-api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20&include_orders=false&owner=${owner}`)
+    .then(res => {
+      //console.log(res.data)
+      //const temp = [...res.data];
+      ///temp.map(({data:{owner}}) => console.log(owner));
+      // res.data.map(({id, image_url, owner, creater}) => {
+      //   console.log("test", owner);
+        // await axios
+        // .post(`http://3.39.153.23/{}/nft`, {
+        //   label: `label ${result.transactionHash}`,
+        //   category:"image", 
+        //   price: parseInt("0"),
+        //   uri:URI, 
+        //   isSell:"N",
+        //   createUser: result.from,
+        // })
+        // .then(res => {
+        //   console.log(`statusCode: ${res.status}`);
+        //   console.log(res);
+        // })
+        // .catch(error => {
+        //   console.error(error);
+        // })
+      // })
+    })
+    .catch(error => {
+      console.error(error);
+    })
+}
+//특정 USER의 nft리스트를 크롤링하여 DB에 저장 TODO://DB에 저장 부분 오류
+//callUserNftList(0xdaF9beECd6a285a1b1688f2478A923727AB1Ec13);
