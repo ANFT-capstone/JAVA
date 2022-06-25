@@ -1180,7 +1180,6 @@ async function makeNFT(img, reqCount, walletAddr) {
         .pinJSONToIPFS(body, options)
         .then((result) => {
           airDropMint("ipfs://" + result.IpfsHash + "/", walletAddr, reqCount);
-
         })
         .catch((err) => {
           //handle error here
@@ -1313,4 +1312,4 @@ safeTransferFrom(
 
 //************************************* */
 //이미지, 발행하고자 하는 nft수, NFT를 받고자 하는 지갑 주소 순으로 파라미터를 넣으면 NFT발행됩니다.
-makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
+//makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
