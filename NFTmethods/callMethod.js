@@ -1276,7 +1276,7 @@ async function airDropMint(URI, usr, cnt) {
     .post(`http://3.39.153.23/${result.to}/nft`, {
       label:result.transactionHash,
       category:'image', // TODO:현재는 그림이미지만 nft화 시킨다는 가정
-      price: 0.0, // TODO: 거래 기능 구현 시 수정 필요
+      //price: 0.0, // TODO: 거래 기능 구현 시 수정 필요
       uri:URI, 
       isSell:'no',
       createUser: result.from,
