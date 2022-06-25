@@ -1,0 +1,70 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Implementation of the `IKIP13` interface.  * Contracts may inherit from this and call `_registerInterface` to declare their support of an interface.",
+			"methods": {
+				"supportsInterface(bytes4)": {
+					"details": "See `IKIP13.supportsInterface`.      * Time complexity O(1), guaranteed to always use less than 30 000 gas."
+				}
+			}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/KIP17ANFT.sol": "KIP13"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/KIP17ANFT.sol": {
+			"keccak256": "0x93c30706fb6eab485f5479654834ceb37cc6c5c105438b870b23912c4aed07bf",
+			"urls": [
+				"bzz-raw://58978060c876a7c3bdb6df109edb564ff8daf8b250456a16786ea507c00788ee",
+				"dweb:/ipfs/Qmah5kZ7xNiCpkG5YVq6D5uS5BMF9onDtU9U3kkKCKZpJB"
+			]
+		}
+	},
+	"version": 1
+}
