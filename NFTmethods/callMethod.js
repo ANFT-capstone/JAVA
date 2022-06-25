@@ -1101,7 +1101,7 @@ var tokenIdx = 3;
 
 const myContract = caver.contract.create(
   abi,
-  "0x68DDDCd03D1D5c256E4468E0996F8Ed4B83b3d35"
+  "0xDd0BfB2f0F06136E9E22a9076AE7fBbf2340E94f"
 );
 
 const deployer = caver.wallet.keyring.createFromPrivateKey(
@@ -1116,6 +1116,11 @@ async function makeJson(name, desc, url, num) {
   const hiddenImgUrl = url;
   const totalNum = num;
 
+  const fsExtra = require("fs-extra");
+  fsExtra.emptyDirSync("ANFTmethods/json");
+  //fs.rmdirSync("json");
+  //fs.mkdirSync("json");
+
   try {
     for (let i = 1; i <= totalNum; i++) {
       let json = `{"name":"${nftName} #${i}","description":"${description}","image":"${hiddenImgUrl}","attributes":[{"trait_type": "Unknown","value": "Unknown"}]}`;
@@ -1128,9 +1133,9 @@ async function makeJson(name, desc, url, num) {
   }
 }
 
-//img와 idx(이건...), 지갑 주소를 받아 nft발행
+//nft발행 함수
 //img와 이를 json화 시킨 파일도 ipfs에도 올려줍니다
-async function makeImgIpfs(img, idx, walletAddr) {
+async function makeNFT(img, reqCount, walletAddr) {
   const fs = require("fs");
   const readableStreamForFile = fs.createReadStream(img);
   const options = {
@@ -1148,11 +1153,9 @@ async function makeImgIpfs(img, idx, walletAddr) {
   pinata
     .pinFileToIPFS(readableStreamForFile, options)
     .then((result) => {
-      //handle results here
-      //console.log(result.IpfsHash);
       imgIpfs = result.IpfsHash;
       imgIpfs = "https://gateway.pinata.cloud/ipfs/" + imgIpfs;
-      makeJson("ANFT", "This is test", imgIpfs, 3);
+      makeJson("ANFT", "This is test", imgIpfs, reqCount);
 
       const body = {
         name: "ANFT #1",
@@ -1176,20 +1179,12 @@ async function makeImgIpfs(img, idx, walletAddr) {
       pinata
         .pinJSONToIPFS(body, options)
         .then((result) => {
-          mintWithTokenURI(
-            walletAddr, //NFT를 받을 지갑 주소
-            idx, //토큰 인덱스
-            "https://gateway.pinata.cloud/ipfs/" + result.IpfsHash //UGC URL
-          );
-          //setNotRevealedURI("ipfs://" + result.IpfsHash);
-          //airDropMint("0xbDe1d3524efe7B69E86F8D5f86d693CFD9757dac", 1);
+          airDropMint("ipfs://" + result.IpfsHash + "/", walletAddr, reqCount);
         })
         .catch((err) => {
           //handle error here
           console.log(err);
         });
-
-      //console.log(imgIpfs);
     })
     .catch((err) => {
       //handle error here
@@ -1270,6 +1265,15 @@ async function airDropMint(URI, usr, cnt) {
     gas: "100000000",
   });
 
+  try {
+    for (let i = 1; i <= cnt; i++) {
+      let fs = require("fs");
+      fs.unlink(`json/${i}.json`, (e) => e);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
   console.log(result);
 }
 
@@ -1307,5 +1311,5 @@ safeTransferFrom(
 */
 
 //************************************* */
-//이미지, 인덱스 번호 넣으면 NFT발행됩니다.
-//makeImgIpfs("./aannfftt.png", 21, "0xbDe1d3524efe7B69E86F8D5f86d693CFD9757dac");
+//이미지, 발행하고자 하는 nft수, NFT를 받고자 하는 지갑 주소 순으로 파라미터를 넣으면 NFT발행됩니다.
+//makeNFT("./aannfftt.png", 2, "0xfbF39C83A08C4104B636a00bc9f73ad591745e87");
