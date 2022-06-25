@@ -27,11 +27,12 @@ public class NFTController {
     public List<NftInfoVo> nftList(@PathVariable(value = "id") String userId) {
 
         // 요청한 유저가 DB에 없는 경우 DB에 추가
-        userService.validateUser(userId);
+        if(userService.validateUser(userId)) userService.addUser(userId);
 
         // 히스토리 업데이트
         String parameter = "none";
         historyService.addHistory(userId, NFT_LIST.ordinal(), parameter, 'S');
+
         return nftService.findAll();
     }
 

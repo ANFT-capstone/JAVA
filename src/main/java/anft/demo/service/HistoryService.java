@@ -30,8 +30,6 @@ public class HistoryService {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String requestDate = today.format(dateTimeFormatter);
 
-        System.out.println(requestUser+requestFunction+requestDate+parameters);
         databaseManager.setNewHistory(requestUser, requestFunction, requestDate, parameters, result);
-        System.out.println(databaseManager.getAllHistory().size());
     }
 }
