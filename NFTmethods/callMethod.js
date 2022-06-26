@@ -1338,7 +1338,7 @@ async function callAllNftList() {
     .get("https://testnets-api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20&include_orders=false")
     .then(res => {
       // 전체 nft리스트 호출
-      console.log(res.data)
+      //console.log(res.data)
       //const temp = [...res.data];
       ///temp.map(({data:{owner}}) => console.log(owner));
       // res.data.map(({id, image_url, owner, creater}) => {
